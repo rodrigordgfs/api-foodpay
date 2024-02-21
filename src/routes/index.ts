@@ -4,6 +4,7 @@ import { listRestaurants } from "./restaurant/list-restaurants";
 import { listRestaurantById } from "./restaurant/list-restaurants-by-id";
 import { updateRestaurant } from "./restaurant/update-restaurant";
 import { deleteRestaurantById } from "./restaurant/delete-restaurant";
+import { createRestaurantRate } from "./restaurantRate/create-restaurant-rate";
 
 export {
   helthCheck,
@@ -12,4 +13,5 @@ export {
   listRestaurantById,
   updateRestaurant,
   deleteRestaurantById,
+  createRestaurantRate,
 };

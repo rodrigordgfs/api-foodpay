@@ -24,6 +24,14 @@ export async function listRestaurantById(app: FastifyInstance) {
           where: {
             id,
           },
+          include: {
+            rates: {
+              select: {
+                rate: true,
+                userId: true,
+              },
+            },
+          },
         });
 
         if (!restaurants) {

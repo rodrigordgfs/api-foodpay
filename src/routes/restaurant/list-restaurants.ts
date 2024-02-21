@@ -7,7 +7,16 @@ export async function listRestaurants(app: FastifyInstance) {
     "/restaurant",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const restaurants = await prisma.restaurant.findMany();
+        const restaurants = await prisma.restaurant.findMany({
+          include: {
+            rates: {
+              select: {
+                rate: true,
+                userId: true,
+              },
+            },
+          },
+        });
 
         return reply.status(StatusCodes.OK).send(restaurants);
       } catch (error) {
