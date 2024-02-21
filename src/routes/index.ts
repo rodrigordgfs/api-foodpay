@@ -10,6 +10,11 @@ import { deleteCategorieById } from "./categorie/delete-categorie";
 import { listCategorieById } from "./categorie/list-categorie-by-id";
 import { listCategories } from "./categorie/list-categories";
 import { updateCategorie } from "./categorie/update-categorie";
+import { createProduct } from "./product/create-product";
+import { deleteProductById } from "./product/delete-product";
+import { listProductById } from "./product/list-product-by-id";
+import { listProducts } from "./product/list-products";
+import { updateProduct } from "./product/update-product";
 
 export {
   helthCheck,
@@ -24,4 +29,9 @@ export {
   listCategorieById,
   listCategories,
   updateCategorie,
+  createProduct,
+  deleteProductById,
+  listProductById,
+  listProducts,
+  updateProduct,
 };

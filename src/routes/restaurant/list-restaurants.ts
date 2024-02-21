@@ -16,10 +16,8 @@ export async function listRestaurants(app: FastifyInstance) {
               },
             },
             categories: {
-              select: {
-                id: true,
-                name: true,
-                image: true,
+              include: {
+                products: true,
               },
             },
           },

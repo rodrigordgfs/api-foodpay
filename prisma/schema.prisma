@@ -42,6 +42,22 @@ model Categorie {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  products     Product[]
 
   @@map("categories")
+}
+
+model Product {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  image       String
+  time        Int
+  categoryId  String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  category    Categorie @relation(fields: [categoryId], references: [id])
+
+  @@map("products")
 }

@@ -32,12 +32,10 @@ export async function listRestaurantById(app: FastifyInstance) {
               },
             },
             categories: {
-              select: {
-                id: true,
-                name: true,
-                image: true
-              }
-            }
+              include: {
+                products: true,
+              },
+            },
           },
         });
 
