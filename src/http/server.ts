@@ -8,6 +8,11 @@ import {
   updateRestaurant,
   deleteRestaurantById,
   createRestaurantRate,
+  createCategorie,
+  deleteCategorieById,
+  listCategorieById,
+  listCategories,
+  updateCategorie,
 } from "../routes";
 
 const app = fastify();
@@ -28,6 +33,13 @@ app.register(deleteRestaurantById);
 
 //Route - Restaurant Rate
 app.register(createRestaurantRate);
+
+//Route - Categorie
+app.register(createCategorie);
+app.register(deleteCategorieById);
+app.register(listCategorieById);
+app.register(listCategories);
+app.register(updateCategorie);
 
 app.listen({ port: 5000 }).then(() => {
   console.log("Server is running on port 5000");

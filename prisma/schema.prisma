@@ -17,6 +17,7 @@ model Restaurant {
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
   rates       RestaurantRate[]
+  categories  Categorie[]
 
   @@map("restaurants")
 }
@@ -31,4 +32,16 @@ model RestaurantRate {
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 
   @@map("restaurantRates")
+}
+
+model Categorie {
+  id           String     @id @default(uuid())
+  name         String
+  restaurantId String
+  image        String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+
+  @@map("categories")
 }
