@@ -25,7 +25,7 @@ model RestaurantRate {
   id           String     @id @default(uuid())
   restaurantId String
   userId       String
-  rate         Int
+  rate         Float
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
