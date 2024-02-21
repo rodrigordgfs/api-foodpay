@@ -52,7 +52,7 @@ export async function createRestaurantRate(app: FastifyInstance) {
             .send({ message: "Restaurant not found" });
         }
 
-        const restaurantRate = await prisma.rateRestaurant.create({
+        const restaurantRate = await prisma.restaurantRate.create({
           data: {
             rate,
             userId,
