@@ -15,6 +15,13 @@ export async function listRestaurants(app: FastifyInstance) {
                 userId: true,
               },
             },
+            categories: {
+              select: {
+                id: true,
+                name: true,
+                image: true,
+              },
+            },
           },
         });
 
