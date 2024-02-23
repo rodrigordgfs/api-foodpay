@@ -54,6 +54,7 @@ model Product {
   price       Float
   image       String
   time        Int
+  rate        Float @default(5)
   categoryId  String
   highlight   Boolean   @default(false)
   createdAt   DateTime  @default(now())
