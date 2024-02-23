@@ -21,6 +21,9 @@ export async function listRestaurants(app: FastifyInstance) {
               },
             },
           },
+          orderBy: {
+            updatedAt: "desc",
+          }
         });
 
         return reply.status(StatusCodes.OK).send(restaurants);
