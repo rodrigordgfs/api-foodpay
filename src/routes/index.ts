@@ -16,7 +16,9 @@ import { listProductById } from "./product/list-product-by-id";
 import { listProducts } from "./product/list-products";
 import { updateProduct } from "./product/update-product";
 import { highlightProduct } from "./product/highlight-product";
-import { favoriteRestaurantRate } from "./restaurantFavorite/toggle-favorite-restaurant";
+import { favoriteRestaurant } from "./restaurantFavorite/toggle-favorite-restaurant";
+import { findFavoriteRestaurant } from "./restaurantFavorite/user-restaurant-favorite";
+import { listFavoritesRestaurant } from "./restaurantFavorite/list-favorites-restaurant";
 
 export {
   helthCheck,
@@ -37,5 +39,7 @@ export {
   listProducts,
   updateProduct,
   highlightProduct,
-  favoriteRestaurantRate,
+  favoriteRestaurant,
+  findFavoriteRestaurant,
+  listFavoritesRestaurant,
 };

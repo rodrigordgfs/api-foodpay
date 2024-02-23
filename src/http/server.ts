@@ -19,7 +19,9 @@ import {
   listProducts,
   updateProduct,
   highlightProduct,
-  favoriteRestaurantRate,
+  favoriteRestaurant,
+  findFavoriteRestaurant,
+  listFavoritesRestaurant,
 } from "../routes";
 
 const app = fastify();
@@ -42,7 +44,9 @@ app.register(deleteRestaurantById);
 app.register(createRestaurantRate);
 
 //Route - Restaurant Favorite
-app.register(favoriteRestaurantRate);
+app.register(favoriteRestaurant);
+app.register(findFavoriteRestaurant);
+app.register(listFavoritesRestaurant);
 
 //Route - Categorie
 app.register(createCategorie);

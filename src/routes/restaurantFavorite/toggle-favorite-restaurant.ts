@@ -20,16 +20,14 @@ interface RestaurantFavorite {
   restaurantId: string;
 }
 
-interface restaurantFavoriteRequestBody {
+interface restaurantFavoriteRequestParams {
+  restaurantId: string;
   userId: string;
 }
 
-interface restaurantFavoriteRequestParams {
-  restaurantId: string;
-}
-
-const restaurantFavoriteRequestBodySchema = z.object({
+const restaurantFavoriteRequestparamsSchema = z.object({
   userId: z.string().uuid(),
+  restaurantId: z.string().uuid(),
 });
 
 async function findRestaurantById(id: string): Promise<Restaurant | null> {
@@ -50,21 +48,19 @@ async function findRestaurantFavorite(
   });
 }
 
-export async function favoriteRestaurantRate(app: FastifyInstance) {
+export async function favoriteRestaurant(app: FastifyInstance) {
   app.post(
-    "/restaurant/:restaurantId/favorite",
+    "/restaurant/:restaurantId/favorite/:userId",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const { userId } = restaurantFavoriteRequestBodySchema.parse(
-          request.body
-        ) as restaurantFavoriteRequestBody;
+        const { restaurantId, userId } =
+          restaurantFavoriteRequestparamsSchema.parse(
+            request.params
+          ) as restaurantFavoriteRequestParams;
 
-        const { restaurantId } =
-          request.params as restaurantFavoriteRequestParams;
+        const existRestaurant = await findRestaurantById(restaurantId);
 
-        const existingRestaurant = await findRestaurantById(restaurantId);
-
-        if (!existingRestaurant) {
+        if (!existRestaurant) {
           return reply
             .status(StatusCodes.NOT_FOUND)
             .send({ message: "Restaurant not found" });
@@ -104,10 +100,10 @@ export async function favoriteRestaurantRate(app: FastifyInstance) {
             .status(StatusCodes.BAD_REQUEST)
             .send({ message: "Validation error", errors: errorMessage });
         }
-        console.error("Error creating restaurant:", error);
+        console.error("Error creating restaurant favorite", error);
         return reply
           .status(StatusCodes.INTERNAL_SERVER_ERROR)
-          .send({ message: "Error creating restaurant" });
+          .send({ message: "Error creating restaurant favorite" });
       }
     }
   );
