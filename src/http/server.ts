@@ -19,6 +19,7 @@ import {
   listProducts,
   updateProduct,
   highlightProduct,
+  favoriteRestaurantRate,
 } from "../routes";
 
 const app = fastify();
@@ -39,6 +40,9 @@ app.register(deleteRestaurantById);
 
 //Route - Restaurant Rate
 app.register(createRestaurantRate);
+
+//Route - Restaurant Favorite
+app.register(favoriteRestaurantRate);
 
 //Route - Categorie
 app.register(createCategorie);

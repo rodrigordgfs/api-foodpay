@@ -16,6 +16,7 @@ import { listProductById } from "./product/list-product-by-id";
 import { listProducts } from "./product/list-products";
 import { updateProduct } from "./product/update-product";
 import { highlightProduct } from "./product/highlight-product";
+import { favoriteRestaurantRate } from "./restaurantFavorite/toggle-favorite-restaurant";
 
 export {
   helthCheck,
@@ -36,4 +37,5 @@ export {
   listProducts,
   updateProduct,
   highlightProduct,
+  favoriteRestaurantRate,
 };

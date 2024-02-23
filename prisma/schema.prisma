@@ -8,16 +8,17 @@ datasource db {
 }
 
 model Restaurant {
-  id          String           @id @default(uuid())
+  id          String               @id @default(uuid())
   name        String
   image       String
   latitude    Float
   longitude   Float
   description String
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
   rates       RestaurantRate[]
   categories  Categorie[]
+  favorites   RestaurantFavorite[]
 
   @@map("restaurants")
 }
@@ -32,6 +33,16 @@ model RestaurantRate {
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 
   @@map("restaurantRates")
+}
+
+model RestaurantFavorite {
+  id           String     @id @default(uuid())
+  restaurantId String
+  userId       String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+
+  @@unique([restaurantId, userId])
+  @@map("restaurantFavorites")
 }
 
 model Categorie {
@@ -54,7 +65,7 @@ model Product {
   price       Float
   image       String
   time        Int
-  rate        Float @default(5)
+  rate        Float     @default(5)
   categoryId  String
   highlight   Boolean   @default(false)
   createdAt   DateTime  @default(now())
