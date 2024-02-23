@@ -15,6 +15,7 @@ import { deleteProductById } from "./product/delete-product";
 import { listProductById } from "./product/list-product-by-id";
 import { listProducts } from "./product/list-products";
 import { updateProduct } from "./product/update-product";
+import { highlightProduct } from "./product/highlight-product";
 
 export {
   helthCheck,
@@ -34,4 +35,5 @@ export {
   listProductById,
   listProducts,
   updateProduct,
+  highlightProduct,
 };

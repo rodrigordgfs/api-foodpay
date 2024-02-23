@@ -18,6 +18,7 @@ import {
   listProductById,
   listProducts,
   updateProduct,
+  highlightProduct,
 } from "../routes";
 
 const app = fastify();
@@ -52,6 +53,7 @@ app.register(deleteProductById);
 app.register(listProductById);
 app.register(listProducts);
 app.register(updateProduct);
+app.register(highlightProduct);
 
 app.listen({ port: 5000 }).then(() => {
   console.log("Server is running on port 5000");

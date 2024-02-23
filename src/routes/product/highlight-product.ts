@@ -16,27 +16,19 @@ interface Product {
   updatedAt: Date;
 }
 
-interface UpdateProductRequestBody {
-  name?: string;
-  description?: string;
-  price?: number;
-  image?: string;
-  time?: number;
+interface HighlightProductRequestBody {
+  highlight: boolean;
 }
 
-const updateProductRequestBodySchema = z.object({
-  name: z.string().optional(),
-  description: z.string().optional(),
-  image: z.string().optional(),
-  price: z.number().optional(),
-  time: z.number().optional(),
-});
-
-interface updateProductRequestBodySchema {
+interface HighlightProductRequestParams {
   id: string;
 }
 
-const updateProductRequestParamsSchema = z.object({
+const highlightProductRequestBodySchema = z.object({
+  highlight: z.boolean(),
+});
+
+const highlightProductRequestParamsSchema = z.object({
   id: z.string().uuid(),
 });
 
@@ -44,19 +36,18 @@ async function findProductById(id: string): Promise<Product | null> {
   return prisma.product.findUnique({ where: { id } });
 }
 
-export async function updateProduct(app: FastifyInstance) {
+export async function highlightProduct(app: FastifyInstance) {
   app.patch(
-    "/product/:id",
+    "/product/:id/highlight",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const { name, image, description, price, time } =
-          updateProductRequestBodySchema.parse(
-            request.body
-          ) as UpdateProductRequestBody;
+        const { highlight } = highlightProductRequestBodySchema.parse(
+          request.body
+        ) as HighlightProductRequestBody;
 
-        const { id } = updateProductRequestParamsSchema.parse(
+        const { id } = highlightProductRequestParamsSchema.parse(
           request.params
-        ) as updateProductRequestBodySchema;
+        ) as HighlightProductRequestParams;
 
         const existProduct = await findProductById(id);
 
@@ -68,11 +59,7 @@ export async function updateProduct(app: FastifyInstance) {
 
         const product = await prisma.product.update({
           data: {
-            name: name || undefined,
-            image: image || undefined,
-            description: description || undefined,
-            price: price || undefined,
-            time: time || undefined,
+            highlight,
           },
           where: {
             id,
