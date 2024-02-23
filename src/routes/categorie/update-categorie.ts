@@ -6,7 +6,6 @@ import { StatusCodes } from "http-status-codes";
 interface Categorie {
   id: string;
   name: string;
-  image: string;
   restaurantId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -14,12 +13,10 @@ interface Categorie {
 
 interface UpdateCategorieRequestBody {
   name?: string;
-  image?: string;
 }
 
 const updateCategorierequestBodySchema = z.object({
   name: z.string().optional(),
-  image: z.string().optional(),
 });
 
 interface UpdateCategorieRequestParams {
@@ -39,7 +36,7 @@ export async function updateCategorie(app: FastifyInstance) {
     "/categorie/:id",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const { name, image } = updateCategorierequestBodySchema.parse(
+        const { name } = updateCategorierequestBodySchema.parse(
           request.body
         ) as UpdateCategorieRequestBody;
 
@@ -57,8 +54,7 @@ export async function updateCategorie(app: FastifyInstance) {
 
         const categorie = await prisma.categorie.update({
           data: {
-            name: name || undefined,
-            image: image || undefined,
+            name: name || undefined
           },
           where: {
             id,

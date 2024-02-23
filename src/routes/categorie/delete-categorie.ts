@@ -6,7 +6,6 @@ import { StatusCodes } from "http-status-codes";
 interface Categorie {
   id: string;
   name: string;
-  image: string;
   restaurantId: string;
   createdAt: Date;
   updatedAt: Date;

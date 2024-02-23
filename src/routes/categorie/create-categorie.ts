@@ -5,13 +5,11 @@ import { StatusCodes } from "http-status-codes";
 
 interface CreateCategorieRequestBody {
   name: string;
-  image: string;
   restaurantId: string;
 }
 
 const createCategorieRequestBodySchema = z.object({
   name: z.string(),
-  image: z.string(),
   restaurantId: z.string().uuid(),
 });
 
@@ -20,14 +18,13 @@ export async function createCategorie(app: FastifyInstance) {
     "/categorie",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const { image, name, restaurantId } =
+        const { name, restaurantId } =
           createCategorieRequestBodySchema.parse(
             request.body
           ) as CreateCategorieRequestBody;
 
         const categorie = await prisma.categorie.create({
           data: {
-            image,
             name,
             restaurantId,
           },
