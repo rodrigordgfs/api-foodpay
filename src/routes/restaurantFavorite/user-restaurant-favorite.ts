@@ -56,7 +56,7 @@ export async function findFavoriteRestaurant(app: FastifyInstance) {
         });
 
         if (!restaurantFavorite) {
-          return reply.status(StatusCodes.NOT_FOUND).send({
+          return reply.status(StatusCodes.OK).send({
             message: "Restaurant favorite not found",
           });
         }

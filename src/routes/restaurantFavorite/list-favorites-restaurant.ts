@@ -12,8 +12,8 @@ const restaurantFavoriteRequestparamsSchema = z.object({
 });
 
 export async function listFavoritesRestaurant(app: FastifyInstance) {
-  app.post(
-    "/restaurant/:userId",
+  app.get(
+    "/restaurant/user/:userId",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
         const { userId } = restaurantFavoriteRequestparamsSchema.parse(
@@ -24,9 +24,9 @@ export async function listFavoritesRestaurant(app: FastifyInstance) {
           where: {
             userId,
           },
-          include: {
+          select: {
             restaurant: true,
-          },
+          }
         });
 
         return reply.status(StatusCodes.OK).send(favorites);
