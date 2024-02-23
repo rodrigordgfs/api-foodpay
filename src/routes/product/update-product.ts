@@ -21,6 +21,7 @@ interface UpdateProductRequestBody {
   price?: number;
   image?: string;
   time?: number;
+  highlight?: boolean;
 }
 
 const updateProductRequestBodySchema = z.object({
@@ -29,6 +30,7 @@ const updateProductRequestBodySchema = z.object({
   image: z.string().optional(),
   price: z.number().optional(),
   time: z.number().optional(),
+  highlight: z.boolean().optional(),
 });
 
 interface updateProductRequestBodySchema {
@@ -48,7 +50,7 @@ export async function updateProduct(app: FastifyInstance) {
     "/product/:id",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        const { name, image, description, price, time } =
+        const { name, image, description, price, time, highlight } =
           updateProductRequestBodySchema.parse(
             request.body
           ) as UpdateProductRequestBody;
@@ -72,6 +74,7 @@ export async function updateProduct(app: FastifyInstance) {
             description: description || undefined,
             price: price || undefined,
             time: time || undefined,
+            highlight: highlight || undefined,
           },
           where: {
             id,

@@ -55,6 +55,7 @@ model Product {
   image       String
   time        Int
   categoryId  String
+  highlight   Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   category    Categorie @relation(fields: [categoryId], references: [id])
