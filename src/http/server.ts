@@ -22,6 +22,9 @@ import {
   favoriteRestaurant,
   findFavoriteRestaurant,
   listFavoritesRestaurant,
+  favoriteProduct,
+  findFavoriteProduct,
+  listFavoritesProduct,
 } from "../routes";
 
 const app = fastify();
@@ -62,6 +65,11 @@ app.register(listProductById);
 app.register(listProducts);
 app.register(updateProduct);
 app.register(highlightProduct);
+
+//Route - Product Favorite
+app.register(favoriteProduct);
+app.register(findFavoriteProduct);
+app.register(listFavoritesProduct);
 
 app.listen({ port: 5000 }).then(() => {
   console.log("Server is running on port 5000");

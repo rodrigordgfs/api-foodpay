@@ -19,6 +19,9 @@ import { highlightProduct } from "./product/highlight-product";
 import { favoriteRestaurant } from "./restaurantFavorite/toggle-favorite-restaurant";
 import { findFavoriteRestaurant } from "./restaurantFavorite/user-restaurant-favorite";
 import { listFavoritesRestaurant } from "./restaurantFavorite/list-favorites-restaurant";
+import { favoriteProduct } from "./productFavorite/toogle-favorite-product";
+import { findFavoriteProduct } from "./productFavorite/user-product-favorite";
+import { listFavoritesProduct } from "./productFavorite/list-favorites.products";
 
 export {
   helthCheck,
@@ -42,4 +45,7 @@ export {
   favoriteRestaurant,
   findFavoriteRestaurant,
   listFavoritesRestaurant,
+  favoriteProduct,
+  findFavoriteProduct,
+  listFavoritesProduct,
 };
